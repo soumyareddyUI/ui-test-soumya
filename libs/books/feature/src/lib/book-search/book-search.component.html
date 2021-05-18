@@ -30,8 +30,9 @@
             <strong>Published:</strong> {{ formatDate(b.publishedDate) }}
           </div>
           <p [innerHTML]="b.description"></p>
-          <div>
+          <div *ngIf="!b.finished; else elseStatement">
             <button
+              data-testing="add-book"
               mat-flat-button
               color="primary"
               (click)="addBookToReadingList(b)"
@@ -40,6 +41,18 @@
               Want to Read
             </button>
           </div>
+          <ng-template #elseStatement>
+            <div>
+              <button
+                data-testing="book-finished"
+                mat-flat-button
+                color="primary"
+                [disabled]="b.finished"
+              >
+                Finished
+              </button>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>

@@ -3,20 +3,36 @@
     <div>
       <img class="reading-list-item--cover" [src]="b.coverUrl" />
     </div>
-    <div class="reading-list-item--details">
+    <div class="reading-list-item--details" data-testing="reading-list-item">
       <strong class="reading-list-item--details--title">{{ b.title }}</strong>
       <div class="reading-list-item--details--author">
         {{ b.authors.join(',') }}
+        <div *ngIf="b.finished">
+          {{ b.finishedDate }}
+        </div>
       </div>
     </div>
     <div>
       <button
+        data-testing="remove-button"
         mat-icon-button
         color="warn"
         [attr.aria-label]="'Remove ' + b.title + ' from reading list'"
         (click)="removeFromReadingList(b)"
       >
         <mat-icon>remove_circle</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button
+        data-testing="finished-button"
+        mat-icon-button
+        color="primary"
+        [attr.aria-label]="'Finished ' + b.title + ' from reading list'"
+        (click)="finishFromReadingList(b)"
+        [disabled]="b.finished"
+      >
+        <mat-icon>check_circle</mat-icon>
       </button>
     </div>
   </div>

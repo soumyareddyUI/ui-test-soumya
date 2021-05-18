@@ -15,7 +15,7 @@ import { ReadingListComponent } from './reading-list/reading-list.component';
 const EXPORTS = [
   BookSearchComponent,
   TotalCountComponent,
-  ReadingListComponent
+  ReadingListComponent,
 ];
 
 @NgModule({
